@@ -1,0 +1,43 @@
+{
+  "product": "BaseOS Connect",
+  "protocol": "BaseOS Connect Protocol",
+  "api": "BaseOS Connect API",
+  "version": "2.1",
+  "compatible": ["2.1", "2.0"],
+  "production": {
+    "origin": "https://baseos.net",
+    "also_served_on": ["https://baseos.dev"],
+    "path_prefix": "/api/v1/connect",
+    "pair": "POST /api/v1/connect/pair",
+    "probed_on": "2026-11-06",
+    "retired_path": "/api/bridge/v1"
+  },
+  "receiver": {
+    "canonical_path": "/baseos",
+    "commands": "POST {receiver_url}/commands",
+    "health": "GET {receiver_url}/health",
+    "note": "receiver_url sent at pair time is the site origin plus /baseos. Laravel mounts this by default. Node mounts the same prefix."
+  },
+  "hmac": {
+    "algorithm": "HMAC-SHA256",
+    "key": "full secret string including the whsec_ prefix; do not base64-decode",
+    "signed_string": "{webhook-id}.{webhook-timestamp}.{raw-body}",
+    "signature_header": "v1,<base64>"
+  },
+  "pair_body": ["pair_code", "site_url", "receiver_url", "flavor", "receiver_version", "protocol_supported"],
+  "commands": [
+    "post.upsert",
+    "post.set_state",
+    "post.fetch",
+    "post.find",
+    "post.validate",
+    "site.health",
+    "site.schema",
+    "site.verify"
+  ],
+  "packages": {
+    "composer": "baseos/connect-laravel",
+    "npm": "@baseos/connect-node",
+    "cli": "baseos-connect"
+  }
+}
