@@ -1,6 +1,6 @@
 {
     "name": "baseos/connect-laravel",
-    "description": "BaseOS Connect integration package for Laravel applications.",
+    "description": "Publish BaseOS articles to a Laravel site. Đăng bài BaseOS lên website Laravel.",
     "type": "library",
     "license": "MIT",
     "keywords": ["baseos", "connect", "laravel", "headless", "publishing", "multi-tenant"],
